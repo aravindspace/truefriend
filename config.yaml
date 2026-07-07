@@ -1,0 +1,78 @@
+# TrueFriend — Agent Configuration
+# All API keys loaded from .env file
+
+llm:
+  providers:
+    google:
+      api_key_env: "GEMINI_API_KEY"
+      default_model: "gemini-2.5-flash"
+    groq:
+      api_key_env: "GROQ_API_KEY"
+      default_model: "llama-3.3-70b-versatile"
+    ollama:
+      base_url_env: "OLLAMA_BASE_URL"
+      base_url_default: "http://localhost:11434"
+      default_model: "llama3"
+    azure_openai:
+      api_key_env: "AZURE_OPENAI_API_KEY"
+      endpoint_env: "AZURE_OPENAI_ENDPOINT"
+      api_version_env: "AZURE_OPENAI_API_VERSION"
+      default_model: "o4-mini"
+
+agents:
+  supervisor_classify:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.1
+    description: "Fast intent classification"
+  supervisor_respond:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.7
+    description: "Final response synthesis with personality"
+  scholar:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.3
+    description: "Gita knowledge retrieval and reasoning (ReAct agent)"
+  world_connector:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.3
+    description: "Web search and Gita mapping (ReAct agent)"
+  recall:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.1
+    description: "Memory search and relevance filtering (ReAct agent)"
+  memory_keeper:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.3
+    description: "Conversation summarization and learning extraction"
+  gita_learner:
+    provider: "azure_openai"
+    model: "o4-mini"
+    temperature: 0.5
+    description: "Offline Gita study and note generation"
+
+memory:
+  conversation_history_limit: 10
+  summarize_after: 10
+  chroma_collection: "truefriend_memory"
+  similarity_threshold: 0.75
+  max_recall_results: 5
+
+routing:
+  intent_types:
+    - REPEAT
+    - DEEPEN
+    - NEW
+    - CRISIS
+
+paths:
+  kuzu_db: "data/kuzu_db"
+  chroma_db: "data/chroma_db"
+  user_profiles: "data/users"
+  study_notes: "knowledge/notes"
+  prompts: "prompts"

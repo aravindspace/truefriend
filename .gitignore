@@ -1,0 +1,49 @@
+# ─── Environment & Secrets ───
+.env
+.env.*
+!.env.example
+
+# ─── Python ───
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ─── Runtime Data (regenerated at runtime, never commit) ───
+# data/kuzu_db/
+# data/chroma_db/
+# data/users/
+
+# ─── Knowledge: generated notes (Gita Learner output, regeneratable) ───
+# knowledge/notes/
+
+# ─── Keep parquet (sacred source, GraphRAG output) ───
+# knowledge/parquet/ is NOT ignored — these are the original sacred source files
+
+# ─── Raw input transcripts (large, user-specific) ───
+input/
+
+# ─── Microsoft GraphRAG intermediate/output files ───
+# If you run GraphRAG inside this repo, ignore its working dirs
+output/
+cache/
+logs/
+*.lock
+
+# ─── IDE ───
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── OS ───
+.DS_Store
+Thumbs.db
+desktop.ini
