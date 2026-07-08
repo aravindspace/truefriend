@@ -1,0 +1,194 @@
+{
+  "routing_table": {
+    "career": {
+      "anartha": "Kama",
+      "guna": "Rajas",
+      "section": 3
+    },
+    "family": {
+      "anartha": "Moha",
+      "guna": "Rajas",
+      "section": 3
+    },
+    "duty": {
+      "anartha": "Moha",
+      "guna": "Satva",
+      "section": 4
+    },
+    "purpose": {
+      "anartha": "Kama",
+      "guna": "Rajas",
+      "section": 5
+    },
+    "loss": {
+      "anartha": "Moha",
+      "guna": "Tamas",
+      "section": 5
+    },
+    "envy": {
+      "anartha": "Matsarya",
+      "guna": "Tamas",
+      "section": 3
+    },
+    "identity": {
+      "anartha": "Moha",
+      "guna": "Satva",
+      "section": 1
+    },
+    "relationships": {
+      "anartha": "Moha",
+      "guna": "Rajas",
+      "section": 3
+    },
+    "morality": {
+      "anartha": "Moha",
+      "guna": "Rajas",
+      "section": 4
+    },
+    "self-realization": {
+      "anartha": "Moha",
+      "guna": "Satva",
+      "section": 5
+    },
+    "education": {
+      "anartha": "Moha",
+      "guna": "Tamas",
+      "section": 2
+    },
+    "warfare": {
+      "anartha": "Krodha",
+      "guna": "Rajas",
+      "section": 4
+    },
+    "leadership": {
+      "anartha": "Mada",
+      "guna": "Rajas",
+      "section": 4
+    },
+    "business": {
+      "anartha": "Kama",
+      "guna": "Rajas",
+      "section": 4
+    },
+    "happiness": {
+      "anartha": "Kama",
+      "guna": "Rajas",
+      "section": 2
+    },
+    "fear": {
+      "anartha": "Krodha",
+      "guna": "Rajas",
+      "section": 4
+    },
+    "knowledge": {
+      "anartha": "Moha",
+      "guna": "Satva",
+      "section": 2
+    },
+    "religion": {
+      "anartha": "Moha",
+      "guna": "Satva",
+      "section": 5
+    },
+    "strategy": {
+      "anartha": "Mada",
+      "guna": "Rajas",
+      "section": 4
+    },
+    "mental health": {
+      "anartha": "Moha",
+      "guna": "Tamas",
+      "section": 5
+    },
+    "spirituality": {
+      "anartha": "Moha",
+      "guna": "Satva",
+      "section": 5
+    }
+  },
+  "anartha_canonical_incidents": {
+    "Kama": [
+      "chunk_0036",
+      "chunk_0131",
+      "chunk_0206"
+    ],
+    "Krodha": [
+      "chunk_0110",
+      "chunk_0132",
+      "chunk_0336"
+    ],
+    "Lobha": [
+      "chunk_0022",
+      "chunk_0118",
+      "chunk_0196"
+    ],
+    "Moha": [
+      "chunk_0009",
+      "chunk_0064",
+      "chunk_0348",
+      "chunk_0626"
+    ],
+    "Mada": [
+      "chunk_0020",
+      "chunk_0070",
+      "chunk_0480"
+    ],
+    "Matsarya": [
+      "chunk_0806",
+      "chunk_0995",
+      "chunk_1004"
+    ]
+  },
+  "yoga_analogies_fallback": {
+    "Karma": [
+      "chunk_0113",
+      "chunk_0197",
+      "chunk_0256"
+    ],
+    "Sankhya": [
+      "chunk_0068",
+      "chunk_0280",
+      "chunk_0322"
+    ],
+    "Dhyana": [
+      "chunk_0130",
+      "chunk_0215",
+      "chunk_0321"
+    ],
+    "Bhakti": [
+      "chunk_0022",
+      "chunk_0147",
+      "chunk_0469"
+    ]
+  },
+  "personality_dynasty_lookup": {
+    "Krishna": "Yadu dynasty, Supreme Personality of Godhead",
+    "Arjuna": "Kuru (Pandava), warrior, disciple of Krishna",
+    "A. C. Bhaktivedanta Swami Prabhupada": "Gaudiya-Vaishnava, author and spiritual master",
+    "Sanjaya": "Suta, newsreader of Dhritarashtra",
+    "Dhritarashtra": "Kuru, blind king",
+    "Pandu": "Kuru (Pandava), father of the Pandavas",
+    "Vyasa": "Vedic sage, compiler of Puranas and Gita commentator",
+    "Pandavas": "Kuru dynasty, heroic princes and Krishna’s intimate friends",
+    "Kauravas": "Kuru dynasty, antagonistic cousins of the Pandavas",
+    "Dhṛtarāṣṭra": "Kuru dynasty, blind monarch of Hastinapura",
+    "Duryodhana": "Kuru (Kaurava), leader of the Kauravas",
+    "Dronacharya": "Brahmin of Bharadwaja dynasty, martial guru",
+    "Bhishma": "Kuru grandsire, invincible warrior",
+    "Karna": "Suta (charioteer) caste, great warrior, friend of Duryodhana",
+    "Brahma": "mind-born son of Krishna, creator of the universe",
+    "Indra": "Svarga sovereign, king of the demigods",
+    "Narada": "mind-born son of Brahma, traveling sage",
+    "Four Kumaras": "mind-born sons of Brahma, eternal child-sages",
+    "Bali Maharaj": "Asura king, celebrated devotee of Vishnu",
+    "Prahlāda Maharaja": "Asura prince, exemplary devotee of Vishnu",
+    "Yamunacharya": "Andhra Vaishnava acharya, disciple of Ramanuja",
+    "Ramanujacharya": "Srivaishnava acharya, follower of Vishishtadvaita",
+    "Rupa Goswami": "Six Gosvami of Vrindavan, Vaishnava saint",
+    "Sanatana Goswami": "Six Gosvami of Vrindavan, elder brother of Rupa",
+    "Jiva Goswami": "Six Gosvami of Vrindavan, great Gaudiya theologian",
+    "Raghunath Bhatta Goswami": "Six Gosvami of Vrindavan, companion of Jiva",
+    "Gaur Nitai": "Personal expansion of Chaitanya Mahaprabhu",
+    "Chaitanya Mahaprabhu": "Vjiṣṇu (Yadu) dynasty, incarnation of combined Krishna and Radha devotion"
+  }
+}
