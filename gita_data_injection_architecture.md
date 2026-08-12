@@ -489,6 +489,13 @@ This section is the canonical reference sheet for the **Multi-Agent System**. It
   2. `PRESENT_IN` (**21 edges**): `FROM Anartha TO GitaIncident`
   3. `RESOLVED_BY` (**3 edges**): `FROM GitaIncident TO YogaTeaching`
   4. `ILLUSTRATED_BY` (**3 edges**): `FROM YogaTeaching TO NatureAnalogy`
+
+     > **Note (2026-07-21):** these counts describe the canon MASTER, which never
+     > changes. The runtime clone `arjun_action/self_learning_db` was enriched by
+     > step 07 (`preprocessing/07_backfill_edges.py`, owner-approved):
+     > PRESENT_IN 21→87, RESOLVED_BY 3→150, ILLUSTRATED_BY 3→122. See
+     > `preprocessing/reports/07_backfill_20260721_035100.md`.
+
   5. `CAUSES` (**2 edges**): `FROM Anartha TO Anartha`
   6. `PARENT_OF` (**52 edges**): `FROM HistoricalPersonality TO HistoricalPersonality`
   7. `MARRIED_TO` (**14 edges**): `FROM HistoricalPersonality TO HistoricalPersonality`

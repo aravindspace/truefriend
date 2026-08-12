@@ -3,6 +3,9 @@
 .env.*
 !.env.example
 .agents
+.claude/
+.pytest_cache/
+
 
 # ─── Python ───
 __pycache__/
@@ -19,6 +22,10 @@ models/
 # ─── IDE ───
 .vscode/
 .idea/
+
+# ─── Arjun's writable root (ADR 0004) — runtime state, never committed ───
+# arjun_action/*
+# !arjun_action/README.md
 
 # ─── Ignore these files ───
 test.py

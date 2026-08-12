@@ -1,0 +1,58 @@
+# TrueFriend model selection — §14 of arjun_architecture.md
+# Consumed by: the Thyroid (tier/profile selection) and the harness (budgets).
+# LiteLLM routing details (deployments, fallbacks, retries) live in litellm.yaml.
+#
+# Config tiers are each agent's DEFAULT AND MAXIMUM — the Thyroid may only
+# downgrade for a turn, never upgrade past this file (§6.2 step 2).
+
+tiers:
+  voice: # Arjun's speaking voice — frontal_plan + frontal_compose
+    router_alias: voice
+    primary: azure/o4-mini
+    fallbacks: [anthropic/claude-sonnet-5, gemini/gemini-2.5-flash]
+
+  fast: # classifiers + subagents — Azure primary for quota headroom (owner decision 2026-07-18)
+    router_alias: fast
+    primary: azure/o4-mini # was groq gpt-oss-120b; Groq/Gemini free tiers hit daily caps
+    fallbacks: [groq/openai/gpt-oss-120b, groq/openai/gpt-oss-20b, gemini/gemini-2.5-flash]
+
+  judge: # evaluation only. Owner decision 2026-07-21: Azure o4-mini is the
+    # DEFAULT everywhere, judge included — §15 judge-independence stays WAIVED
+    # (judge shares the compose family, a self-preference-bias risk documented
+    # in the P1.21 note). Groq/Gemini kept as fallbacks. Content-filter safety is
+    # handled deterministically now (arjun/harness/content_filter.py), not by
+    # cross-provider content_policy_fallbacks.
+    router_alias: judge
+    primary: azure/o4-mini
+    fallbacks: [groq/openai/gpt-oss-120b, gemini/gemini-2.5-flash]
+
+  embed: # local, in-process — same 512-dim stack as the Canon (§16)
+    provider: local_llama_cpp
+    model_path: models/nomic-embed-text-v1.5.Q8_0.gguf
+    dims: 512
+
+agents:
+  frontal_lobe: voice
+  gut_screen: fast
+  retrieval: fast
+  temporal: fast
+  world: fast
+  limbic_update: fast
+  reflection: fast
+  drives: fast # all Phase 2 drive runners
+  judge: judge
+
+# Named Thyroid profiles (§6.2 step 2): deterministic mapping from the Gut read.
+# Budgets are per-turn ceilings enforced by the harness.
+profiles:
+  small_talk: # high-confidence trivial turn ONLY — doubt resolves upward
+    compose_tier: fast # greeting → compose on fast, retrieval skipped
+    max_tokens: 1500
+    max_tool_calls_per_subagent: 2
+    recursion_limit: 8
+
+  counseling: # the default; locked when self_harm_flag is set (§9.2)
+    compose_tier: voice
+    max_tokens: 12000
+    max_tool_calls_per_subagent: 6
+    recursion_limit: 25

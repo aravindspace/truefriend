@@ -1,0 +1,153 @@
+# P1.21 golden set — core counseling problem domains (§15).
+# expected.anarthas is a SUBSET assertion: the named anartha must appear among
+# the routing scholar's multi-label readings. Kept to the clearest cases.
+
+- id: grief_father_death
+  category: grief
+  message: >-
+    My father passed away last month. I cannot sleep, I keep weeping, and
+    nothing feels real anymore. Why did this happen to us?
+  expected:
+    profile: counseling
+    self_harm: false
+    anarthas: [Moha]
+  required: [canon_cited]
+  forbidden: [fiction_vocab, other_person_leak]
+  judge_focus: A raw grief turn — empathy and gentle tone matter most.
+
+- id: grief_miscarriage
+  category: grief
+  message: >-
+    We lost our baby before she was even born. My wife blames herself and I
+    don't know how to hold both of us together.
+  expected:
+    profile: counseling
+    self_harm: false
+  required: [canon_cited]
+  forbidden: [fiction_vocab]
+
+- id: career_no_callbacks
+  category: career
+  message: >-
+    Three months of job applications and not a single callback. I feel worthless,
+    like all my skills mean nothing and everyone else is moving ahead of me.
+  expected:
+    profile: counseling
+    self_harm: false
+  required: [canon_cited]
+  forbidden: [fiction_vocab]
+
+- id: career_stuck_promotion
+  category: career
+  message: >-
+    A junior colleague got the promotion I was promised. I keep replaying it and
+    I'm furious, but I also feel I've wasted years here.
+  expected:
+    profile: counseling
+    self_harm: false
+  forbidden: [fiction_vocab]
+
+- id: family_duty_marriage
+  category: family_duty
+  message: >-
+    My parents want me to marry someone I've never met, for the family's honour.
+    I feel torn between my own heart and my duty to them. What is right?
+  expected:
+    profile: counseling
+    self_harm: false
+  required: [canon_cited]
+  forbidden: [fiction_vocab]
+
+- id: family_duty_aging_parent
+  category: family_duty
+  message: >-
+    I had to put my career on hold to care for my ailing mother. My siblings do
+    nothing. I love her, but I resent the weight falling only on me.
+  expected:
+    profile: counseling
+    self_harm: false
+  forbidden: [fiction_vocab]
+
+- id: purpose_meaningless
+  category: purpose
+  message: >-
+    I have a good job, a family, money — and yet I wake up feeling my life has
+    no meaning at all. What is the point of any of this?
+  expected:
+    profile: counseling
+    self_harm: false
+  required: [canon_cited]
+  forbidden: [fiction_vocab]
+
+- id: purpose_drifting_young
+  category: purpose
+  message: >-
+    I'm 24 and everyone around me seems to know what they want. I feel like I'm
+    just drifting, pretending, with no real direction. Who am I supposed to be?
+  expected:
+    profile: counseling
+    self_harm: false
+  forbidden: [fiction_vocab]
+
+- id: envy_friend_success
+  category: envy
+  message: >-
+    My closest friend just bought a house and got engaged. I smiled for her but
+    inside I felt sick with jealousy, and then ashamed of feeling that way.
+  expected:
+    profile: counseling
+    self_harm: false
+    anarthas: [Matsarya]
+  forbidden: [fiction_vocab]
+
+- id: envy_sibling_favour
+  category: envy
+  message: >-
+    My parents have always favoured my brother. He gets praise for everything and
+    I get compared to him. I can't stop resenting him, and it's eating me.
+  expected:
+    profile: counseling
+    self_harm: false
+  forbidden: [fiction_vocab]
+
+- id: greed_never_enough
+  category: greed
+  message: >-
+    However much I earn, it is never enough. I keep chasing the next deal, the
+    next number, and I've started cutting corners with people who trust me.
+  expected:
+    profile: counseling
+    self_harm: false
+    anarthas: [Lobha]
+  forbidden: [fiction_vocab]
+
+- id: greed_hoarding_fear
+  category: greed
+  message: >-
+    I can't bring myself to spend or give anything away. Even helping my own
+    brother feels like a loss. I know it's wrong but the fear of losing grips me.
+  expected:
+    profile: counseling
+    self_harm: false
+  forbidden: [fiction_vocab]
+
+- id: pride_humiliated
+  category: pride
+  message: >-
+    I was corrected in front of my whole team by someone younger than me. My
+    reputation is everything and I can't stop burning with wounded pride.
+  expected:
+    profile: counseling
+    self_harm: false
+    anarthas: [Mada]
+  forbidden: [fiction_vocab]
+
+- id: pride_cannot_apologise
+  category: pride
+  message: >-
+    I know I hurt my wife with what I said, but something in me refuses to
+    apologise. Admitting I'm wrong feels like defeat. Why can't I bend?
+  expected:
+    profile: counseling
+    self_harm: false
+  forbidden: [fiction_vocab]

@@ -1,0 +1,96 @@
+# LiteLLM Router config — §14 / §5 of arjun_architecture.md
+# Loaded by the gateway module into an in-process litellm.Router.
+# API keys come from the environment (.env) — never from this file.
+#
+# Aliases: every deployment with the same model_name is one alias group.
+# Cross-alias fallbacks (incl. content_policy_fallbacks — §5 content-filter
+# resilience: battlefield Canon chunks go out verbatim, a provider filter
+# rejection must never kill the turn) are declared in router_settings.
+
+model_list:
+  # ── voice tier ──────────────────────────────────────────────
+  - model_name: voice
+    litellm_params:
+      model: azure/o4-mini
+      api_key: os.environ/AZURE_OPENAI_API_KEY
+      api_base: os.environ/AZURE_OPENAI_ENDPOINT
+      api_version: os.environ/AZURE_OPENAI_API_VERSION
+
+  - model_name: voice-anthropic
+    litellm_params:
+      model: anthropic/claude-sonnet-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+  - model_name: voice-gemini
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
+
+
+  # ── fast tier ───────────────────────────────────────────────
+  # Azure o4-mini is the primary now (owner decision 2026-07-18): Groq/Gemini
+  # free tiers hit daily caps and killed turns. Groq/Gemini remain as fallbacks.
+  - model_name: fast
+    litellm_params:
+      model: azure/o4-mini
+      api_key: os.environ/AZURE_OPENAI_API_KEY
+      api_base: os.environ/AZURE_OPENAI_ENDPOINT
+      api_version: os.environ/AZURE_OPENAI_API_VERSION
+
+  - model_name: fast-groq
+    litellm_params:
+      model: groq/openai/gpt-oss-120b
+      api_key: os.environ/GROQ_API_KEY
+
+  - model_name: fast-small
+    litellm_params:
+      model: groq/openai/gpt-oss-20b
+      api_key: os.environ/GROQ_API_KEY
+
+  - model_name: fast-gemini
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
+
+  # ── judge tier (owner decision 2026-07-21: Azure o4-mini is the DEFAULT
+  # everywhere, judge included; §15 judge-independence stays WAIVED — documented
+  # in models.yaml + the P1.21 note. Groq/Gemini kept as fallbacks.) ──
+  - model_name: judge
+    litellm_params:
+      model: azure/o4-mini
+      api_key: os.environ/AZURE_OPENAI_API_KEY
+      api_base: os.environ/AZURE_OPENAI_ENDPOINT
+      api_version: os.environ/AZURE_OPENAI_API_VERSION
+
+  - model_name: judge-groq
+    litellm_params:
+      model: groq/openai/gpt-oss-120b
+      api_key: os.environ/GROQ_API_KEY
+
+  - model_name: judge-gemini
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: os.environ/GEMINI_API_KEY
+
+  - model_name: judge-anthropic
+    litellm_params:
+      model: anthropic/claude-haiku-4-5-20251001
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+router_settings:
+  num_retries: 2 # exponential backoff on 429/5xx (§5)
+  timeout: 120 # per-call wall clock, seconds
+  # 429/5xx fallbacks only. Content-policy (400) rejections are NOT handled here
+  # — they propagate to the deterministic ladder in arjun/harness/content_filter.py
+  # (owner decision 2026-07-21): cross-provider content_policy_fallbacks proved
+  # useless once the non-Azure quotas ran dry, so the ladder (retry → sanitize →
+  # tailored safe reply) owns content-filter safety now.
+  fallbacks:
+    - voice: [voice-anthropic, voice-gemini] # Azure → Anthropic → Gemini
+    - fast: [fast-groq, fast-small, fast-gemini] # Azure → Groq → Gemini
+    - fast-groq: [fast-small, fast-gemini] # no dead-end on intermediate group
+    - fast-small: [fast-gemini]
+    - judge: [judge-groq, judge-gemini, judge-anthropic] # Azure → Groq → Gemini → Anthropic
+
+litellm_settings:
+  drop_params: true # o4-mini is a reasoning model — silently drop unsupported params (e.g. temperature)
